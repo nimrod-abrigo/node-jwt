@@ -17,3 +17,17 @@ module.exports.login = async (req, res) => {
         res.sendStatus(403);
     }
 };
+
+module.exports.register = async (req, res) => {
+    const postData = req.body;
+
+    const userInfo = {
+        username: postData.username,
+        email: postData.email,
+        password: postData.password
+    };
+
+    let registerResult = await authService.registerUser(userInfo);
+
+    res.send(registerResult);
+}
